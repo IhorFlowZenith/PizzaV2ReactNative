@@ -15,9 +15,9 @@ A modern, dark-themed pizza ordering app built with **React Native**. Browse the
     <td align="center"><b>Login (filled)</b></td>
   </tr>
   <tr>
-    <td><img src="OnboardingScreen.jpg" width="200"/></td>
-    <td><img src="phoneloginscreen.jpg" width="200"/></td>
-    <td><img src="phoneloginscreen2.jpg" width="200"/></td>
+    <td><img src="https://github.com/IhorFlowZenith/PizzaV2ReactNative/blob/main/src/assets/screenshots/OnboardingScreen.jpg" width="200"/></td>
+    <td><img src="https://github.com/IhorFlowZenith/PizzaV2ReactNative/blob/main/src/assets/screenshots/phoneloginscreen.jpg" width="200"/></td>
+    <td><img src="https://github.com/IhorFlowZenith/PizzaV2ReactNative/blob/main/src/assets/screenshots/phoneloginscreen2.jpg" width="200"/></td>
   </tr>
   <tr>
     <td align="center"><b>OTP Verification</b></td>
@@ -25,9 +25,9 @@ A modern, dark-themed pizza ordering app built with **React Native**. Browse the
     <td align="center"><b>Pizza Detail</b></td>
   </tr>
   <tr>
-    <td><img src="otpverificationscreen.jpg" width="200"/></td>
-    <td><img src="HomeScreen.jpg" width="200"/></td>
-    <td><img src="PizzaDetailScreen.jpg" width="200"/></td>
+    <td><img src="https://github.com/IhorFlowZenith/PizzaV2ReactNative/blob/main/src/assets/screenshots/otpverificationscreen.jpg" width="200"/></td>
+    <td><img src="https://github.com/IhorFlowZenith/PizzaV2ReactNative/blob/main/src/assets/screenshots/HomeScreen.jpg" width="200"/></td>
+    <td><img src="https://github.com/IhorFlowZenith/PizzaV2ReactNative/blob/main/src/assets/screenshots/PizzaDetailScreen.jpg" width="200"/></td>
   </tr>
   <tr>
     <td align="center"><b>Cart</b></td>
@@ -35,9 +35,9 @@ A modern, dark-themed pizza ordering app built with **React Native**. Browse the
     <td align="center"><b>Profile</b></td>
   </tr>
   <tr>
-    <td><img src="cartScreen.jpg" width="200"/></td>
-    <td><img src="OrderScreen.jpg" width="200"/></td>
-    <td><img src="ProfileScreen.jpg" width="200"/></td>
+    <td><img src="https://github.com/IhorFlowZenith/PizzaV2ReactNative/blob/main/src/assets/screenshots/cartScreen.jpg" width="200"/></td>
+    <td><img src="https://github.com/IhorFlowZenith/PizzaV2ReactNative/blob/main/src/assets/screenshots/OrderScreen.jpg" width="200"/></td>
+    <td><img src="https://github.com/IhorFlowZenith/PizzaV2ReactNative/blob/main/src/assets/screenshots/ProfileScreen.jpg" width="200"/></td>
   </tr>
 </table>
 
