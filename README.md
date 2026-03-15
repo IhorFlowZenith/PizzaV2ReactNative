@@ -1,97 +1,197 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🍕 PizzaV2
 
-# Getting Started
+A modern, dark-themed pizza ordering app built with **React Native**. Browse the menu, customize your order, and track your order history — all from a sleek mobile interface.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
 
-## Step 1: Start Metro
+## 📱 Screenshots
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+<div align="center">
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+<table>
+  <tr>
+    <td align="center"><b>Onboarding</b></td>
+    <td align="center"><b>Login</b></td>
+    <td align="center"><b>Login (filled)</b></td>
+  </tr>
+  <tr>
+    <td><img src="OnboardingScreen.jpg" width="200"/></td>
+    <td><img src="phoneloginscreen.jpg" width="200"/></td>
+    <td><img src="phoneloginscreen2.jpg" width="200"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>OTP Verification</b></td>
+    <td align="center"><b>Home</b></td>
+    <td align="center"><b>Pizza Detail</b></td>
+  </tr>
+  <tr>
+    <td><img src="otpverificationscreen.jpg" width="200"/></td>
+    <td><img src="HomeScreen.jpg" width="200"/></td>
+    <td><img src="PizzaDetailScreen.jpg" width="200"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Cart</b></td>
+    <td align="center"><b>Order History</b></td>
+    <td align="center"><b>Profile</b></td>
+  </tr>
+  <tr>
+    <td><img src="cartScreen.jpg" width="200"/></td>
+    <td><img src="OrderScreen.jpg" width="200"/></td>
+    <td><img src="ProfileScreen.jpg" width="200"/></td>
+  </tr>
+</table>
 
-```sh
-# Using npm
-npm start
+</div>
 
-# OR using Yarn
-yarn start
+---
+
+## ✨ Features
+
+- **Onboarding & Auth** — Phone number login with OTP verification flow
+- **Home Screen** — Browse all pizzas with live search by name or ingredient
+- **Pizza Detail** — Choose size (S/M/L), adjust quantity, and add to cart
+- **Cart** — Manage items, update quantities, and see the total price
+- **Order History** — View past orders with status badges (Cooking, Delivered, Canceled, etc.)
+- **Profile** — User info, menu blocks, and logout
+- **Custom Bottom Navigation** — Floating tab bar with cart badge counter
+
+---
+
+## 🛠 Tech Stack
+
+| Technology | Version |
+|---|---|
+| React Native | 0.76.9 |
+| React | 18.3.1 |
+| TypeScript | 5.0.4 |
+| React Navigation | 7.x |
+| React Native Reanimated | 3.16.7 |
+| React Native Screens | 4.4.0 |
+| React Native Gesture Handler | 2.20.2 |
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── assets/             # Images and static files
+├── components/         # Reusable UI components
+│   ├── AppButton.tsx
+│   ├── BottomNavigation.tsx
+│   ├── CartCard.tsx
+│   ├── OrderCard.tsx
+│   └── PizzaCard.tsx
+├── constants/          # Static data and enums
+│   ├── Orderbadge.ts
+│   └── Pizza.ts
+├── context/            # Global state
+│   ├── AuthContext.tsx
+│   └── CartContext.tsx
+├── navigation/         # Navigation structure
+│   ├── AppNavigator.tsx
+│   ├── AuthNavigator.tsx
+│   └── TabNavigator.tsx
+└── screens/            # App screens
+    ├── CartScreen.tsx
+    ├── HomeScreen.tsx
+    ├── OnboardingScreen.tsx
+    ├── OrderHistoryScreen.tsx
+    ├── OtpVerificationScreen.tsx
+    ├── PhoneLoginScreen.tsx
+    ├── PizzaDetailScreen.tsx
+    └── ProfileScreen.tsx
 ```
 
-## Step 2: Build and run your app
+---
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+## 🚀 Getting Started
 
-### Android
+### Prerequisites
 
-```sh
-# Using npm
-npm run android
+- Node.js >= 18
+- Android Studio + Android SDK
+- JDK 17
+- React Native CLI
 
-# OR using Yarn
-yarn android
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/PizzaV2.git
+cd PizzaV2
+
+# Install dependencies
+npm install
+
+# Start Metro bundler
+npx react-native start
+
+# Run on Android (in a separate terminal)
+npx react-native run-android
 ```
 
-### iOS
+### Build APK
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```bash
+cd android
+./gradlew assembleDebug
 ```
 
-Then, and every time you update your native dependencies, run:
+The APK will be available at `android/app/build/outputs/apk/debug/app-debug.apk`.
 
-```sh
-bundle exec pod install
+---
+
+## ⚙️ Configuration
+
+Key settings in `android/gradle.properties`:
+
+```properties
+hermesEnabled=true        # Hermes JS engine
+newArchEnabled=false      # React Native new architecture
+reactNativeArchitectures=arm64-v8a
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+---
 
-```sh
-# Using npm
-npm run ios
+## 🎨 Design
 
-# OR using Yarn
-yarn ios
+The app uses a consistent dark design system:
+
+| Token | Value |
+|---|---|
+| Background | `#0F0F0F` |
+| Surface | `#161616` / `#1A1A1A` |
+| Accent | `#FF6B03` |
+| Border | `#262626` |
+| Muted text | `#5F636A` / `#94A3AF` |
+
+---
+
+## 📦 Context / State Management
+
+- **AuthContext** — Handles `isAuthenticated`, `login()`, and `logout()`
+- **CartContext** — Manages cart items, quantities, total count, and total price
+
+---
+
+## 🗺 Navigation Structure
+
+```
+AppNavigator
+├── AuthNavigator (unauthenticated)
+│   ├── OnboardingScreen
+│   ├── PhoneLoginScreen
+│   └── OtpVerificationScreen
+└── TabNavigator (authenticated)
+    ├── Home → HomeScreen → PizzaDetailScreen
+    ├── History → OrderHistoryScreen
+    ├── Cart → CartScreen
+    └── Profile → ProfileScreen
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+---
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## 📄 License
 
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+This project is for educational purposes. Feel free to use it as a reference or starting point for your own projects.

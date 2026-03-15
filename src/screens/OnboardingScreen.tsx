@@ -1,8 +1,15 @@
 import React from 'react';
-import {View, StyleSheet, Image, Text} from 'react-native';
-import AppButton from "../components/AppButton.tsx";
+import { View, StyleSheet, Image, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import AppButton from '../components/AppButton';
+import { AuthStackParamList } from '../navigation/AuthNavigator';
+
+type Nav = StackNavigationProp<AuthStackParamList, 'Onboarding'>;
 
 const OnboardingScreen = () => {
+  const navigation = useNavigation<Nav>();
+
   return (
     <View style={styles.container}>
       <Image
@@ -11,16 +18,18 @@ const OnboardingScreen = () => {
         resizeMode="cover"
       />
       <Text style={styles.title}>
-        Delicious pizza {"\n"}
-        <Text style={styles.highlightText}>
-          at your door
-        </Text>
+        Delicious pizza {'\n'}
+        <Text style={styles.highlightText}>at your door</Text>
       </Text>
       <Text style={styles.subtitle}>
-        The fastest delivery in town. Hot, fresh,{"\n"} and incredibly tasty.
+        The fastest delivery in town. Hot, fresh,{'\n'} and incredibly tasty.
       </Text>
-
-      <AppButton onPress={() => {}} title="Get Started" containerColor='#FF6B00' contentColor='white'/>
+      <AppButton
+        onPress={() => navigation.navigate('PhoneLogin')}
+        title="Get Started"
+        containerColor="#FF6B00"
+        contentColor="white"
+      />
     </View>
   );
 };
@@ -33,11 +42,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0F0F0F',
     paddingHorizontal: 20,
   },
-  image: {
-    width: 300,
-    height: 300,
-    marginBottom: 40,
-  },
+  image: { width: 300, height: 300, marginBottom: 40 },
   title: {
     color: 'white',
     fontSize: 40,
@@ -51,9 +56,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 50,
   },
-  highlightText: {
-    color: '#FF6B00'
-  }
+  highlightText: { color: '#FF6B00' },
 });
 
 export default OnboardingScreen;

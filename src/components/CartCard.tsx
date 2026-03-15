@@ -1,95 +1,110 @@
-import React from "react"
-import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {PIZZA_DATA} from "../constants/Pizza.ts";
+import React from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useCart } from '../context/CartContext';
 
 interface CartCardProps {
-  pizzaId: number;
+  itemId: number;
 }
 
-export default function CartCard({ pizzaId }: CartCardProps) {
-  const currentPizza = PIZZA_DATA.find(p => p.id === pizzaId) || PIZZA_DATA[0];
+export default function CartCard({ itemId }: CartCardProps) {
+  const { cartItems, updateQuantity, removeFromCart } = useCart();
+  const item = cartItems.find(i => i.id === itemId);
+
+  if (!item) return null;
+
+  const handleIncrease = () => updateQuantity(item.id, 1);
+  const handleDecrease = () => {
+    if (item.quantity === 1) {
+      removeFromCart(item.id);
+    } else {
+      updateQuantity(item.id, -1);
+    }
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.row}>
-          <Image style={styles.pizzaImage} source={{uri: currentPizza.imageUrl}}/>
-          <View style={[{flex: 1} ]}>
-            <Text style={styles.pizzaName}>{currentPizza.name}</Text>
-            <Text style={styles.pizzaSize}>{currentPizza.options[0].size}</Text>
-            <Text style={styles.pizzaPrice}>${currentPizza.options[0].price}</Text>
+          <Image style={styles.pizzaImage} source={{ uri: item.imageUrl }} />
+
+          <View style={{ flex: 1 }}>
+            <Text style={styles.pizzaName}>{item.name}</Text>
+            <Text style={styles.pizzaPrice}>${item.price.toFixed(2)}</Text>
           </View>
 
           <View style={styles.countCard}>
-            <TouchableOpacity><Text style={styles.countPlus}>+</Text></TouchableOpacity>
-            <Text style={styles.countText}>1</Text>
-            <TouchableOpacity><Text style={styles.countMinus}>-</Text></TouchableOpacity>
+            <TouchableOpacity onPress={handleIncrease}>
+              <Text style={styles.countPlus}>+</Text>
+            </TouchableOpacity>
+            <Text style={styles.countText}>{item.quantity}</Text>
+            <TouchableOpacity onPress={handleDecrease}>
+              <Text style={styles.countMinus}>−</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15,
-    backgroundColor: "#0F0F0F",
-    width: "100%",
+    paddingHorizontal: 15,
+    paddingVertical: 8,
+    width: '100%',
   },
   card: {
-    padding: 25,
-    backgroundColor: "#1A1A1A",
-    width: "100%",
-    borderRadius: 35,
+    padding: 20,
+    backgroundColor: '#1A1A1A',
+    borderRadius: 30,
     borderWidth: 1,
     borderColor: '#262626',
   },
   row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    gap: 15
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 15,
   },
   pizzaImage: {
-    width: 80,
-    height: 80,
+    width: 75,
+    height: 75,
     resizeMode: 'contain',
     borderRadius: 10,
   },
   pizzaName: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: 'white',
-  },
-  pizzaSize: {
     fontSize: 16,
-    fontWeight: "bold",
-    color: '#5F636A',
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 6,
   },
   pizzaPrice: {
-    fontSize: 24,
-    fontWeight: "bold",
+    fontSize: 20,
+    fontWeight: 'bold',
     color: '#FF6B03',
   },
   countCard: {
     paddingHorizontal: 12,
-    paddingVertical: 6,
+    paddingVertical: 8,
     backgroundColor: '#2A2A2A',
-    borderRadius: 10,
-    alignItems: "center",
+    borderRadius: 14,
+    alignItems: 'center',
+    gap: 6,
   },
   countPlus: {
-    fontSize: 20,
-    color: '#DC6007',
+    fontSize: 22,
+    color: '#FF6B03',
+    fontWeight: 'bold',
   },
   countText: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 18,
+    fontWeight: 'bold',
     color: 'white',
+    minWidth: 20,
+    textAlign: 'center',
   },
   countMinus: {
-    fontSize: 20,
+    fontSize: 22,
     color: '#7C818A',
-  }
-})
+    fontWeight: 'bold',
+  },
+});
